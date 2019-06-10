@@ -4,10 +4,6 @@
 
 
 # the "app_lucky_number" route name is not important yet
-app_lucky_number:
-    path: /lucky/number
+iindex:
+    path: /
     controller: App\Controller\LuckyController::number
-
-app_base:
-    path: /lucky/base
-    controller: App\Controller\LuckyController::baseHtml
