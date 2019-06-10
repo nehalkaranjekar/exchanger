@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %} 
+
+{% block body %}
+<div class="panel">
+  <div class="panel-body">
+  <h1>Todays currency exchange rate with respect to USD</h1>
+    <h5>INR : <b>{{ exchange_rates.INR }}</b></h5>
+    <h5>EUR : <b>{{ exchange_rates.EUR }}</b></h5>
+  </div>
+</div>
+<h1>All Rates</h1>
+<div class="pull-right">
+  <a class="btn btn-primary" href="/create-rate">Create New</a>
+</div>
+<br>
+{% if rates is not empty %}
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Sr. No.</th>
+      <th>Currency</th>
+      <th>Rates</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+      <th>Delete</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for rate in rates %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ rate.currency }}</td>
+    <td>{{ rate.rates }}</td>
+    <td>{{ rate.created_at|date('Y-m-d h:i:s') }}</td>
+    <td>{{ rate.updated_at|date('Y-m-d h:i:s') }}</td>
+    <td><a class="btn btn-danger" href="delete-rate/{{ rate.id }}"><i class="fa fa-trash"></i>Delete</a></td>
+    <td><a class="btn btn-warning" href="update-rate/{{ rate.id }}"><i class="fa fa-pencil"></i>Update</a></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+  <p>No Rates found.</p>
+{% endif %}
+
+
+{% endblock %}
